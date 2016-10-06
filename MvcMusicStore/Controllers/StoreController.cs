@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Web;
 using System.Web.Mvc;
 using MvcMusicStore.Model;
+using MvcMusicStore.Service;
 
 namespace MvcMusicStore.Controllers
 {
@@ -31,19 +32,16 @@ namespace MvcMusicStore.Controllers
 
         public ActionResult Browse(string genre)
         {
-            var genreModel = new Genre
-            {
-                Name = genre
-            };
-
-            return View(genreModel);
+            var genreService = new GenreService();
+            return View(genreService.Get(genre));
         }
 
 
 
         public ActionResult Details(int id)
         {
-            var album = new Album { Title = "Album" + id };
+            var albumService = new AlbumService();
+          Album album =   albumService.Get(id);
             return View(album);
         }
     }

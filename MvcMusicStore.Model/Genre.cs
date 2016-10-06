@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Data.Entity;
 using System.Security.AccessControl;
 
 namespace MvcMusicStore.Model
@@ -36,18 +35,4 @@ namespace MvcMusicStore.Model
         public int ArtistId { get; set; }
         public string Name { get; set; }
     }
-
-    public class MusicStoreEntites : DbContext
-    {
-        public MusicStoreEntites() : base("MusicStoreEntites")
-        {
-
-        }
-
-        public DbSet<Album> Albums { get; set; }
-        public DbSet<Genre> Genres { get; set; }
-
-    }
-
-
 }
