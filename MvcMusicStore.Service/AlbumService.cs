@@ -23,6 +23,13 @@ namespace MvcMusicStore.Service
             return album;
         }
 
+        public bool Delete(Album album)
+        {
+            Album dbAlbum = _db.Albums.Find(album.AlbumId);
+            _db.Albums.Remove(dbAlbum);
+            return _db.SaveChanges() > 0;
+        }
+
 
     }
 }
