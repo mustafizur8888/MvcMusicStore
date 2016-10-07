@@ -1,0 +1,35 @@
+﻿@model IEnumerable<MvcMusicStore.Model.Album>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<table class="table table-condensed table-striped table-hover">
+    <thead>
+        <tr>
+
+            <th>Genre</th>
+            <th>Artist</th>
+            <th>Title</th>
+            <th>Price</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var album in @Model)
+        {
+
+            <tr>
+                <td> @album.Genre.Name</td>
+                <td> @album.Artist.Name</td>
+                <td> @album.Title</td>
+                <td> @album.Price</td>
+                <td>
+                    @Html.ActionLink("Edie","Edit",new {id=album.AlbumId})
+                    @Html.ActionLink("Details","Details",new {id=album.AlbumId})
+                    @Html.ActionLink("Delete","Delete",new {id=album.AlbumId})
+                </td>
+        </tr>
+        }
+    </tbody>
+</table>

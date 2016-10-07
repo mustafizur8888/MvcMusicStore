@@ -4,11 +4,11 @@
 }
 
 <h2>Browsing Genre : @Model.Name</h2>
-<ul>
+<ul class="list-group">
 
     @foreach (var album in Model.Albums)
     {
-        <li>
+        <li class="list-group-item">
             @Html.ActionLink(album.Title, "Details", new { id = album.AlbumId })
         </li>
     }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using MvcMusicStore.Model;
 
@@ -12,34 +13,16 @@ namespace MvcMusicStore.Service
 
         public List<Album> GetAll()
         {
-            List<Album> albums = _db.Albums.ToList();
+            List<Album> albums = _db.Albums.Include(a => a.Genre).Include(a => a.Artist).ToList();
             return albums;
         }
 
         public Album Get(int id)
         {
-            Album album = _db.Albums.Find(id);
+            Album album = _db.Albums.Include(a => a.Genre).Include(a => a.Artist).First(a => a.AlbumId == id);
             return album;
         }
 
-
-    }
-
-    public class GenreService
-    {
-        private readonly MusicStoreEntites _db = new MusicStoreEntites();
-
-        public List<Genre> GetAll()
-        {
-            List<Genre> genres = _db.Genres.Include("Albums").ToList();
-            return genres;
-        }
-
-        public Genre Get(string name)
-        {
-            Genre genre = _db.Genres.Include("Albums").Single(x => x.Name == name);
-            return genre;
-        }
 
     }
 }
